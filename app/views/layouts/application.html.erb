@@ -5,12 +5,80 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <%= link_to "/", class: "navbar-brand border p-4" do %>
+            <i class="fas fa-birthday-cake"></i>
+          <% end %>
+
+          <div>
+            <ul class="navbar-nav ml-auto my-3" style="flex-direction: row; color: white;">
+              <% if admin_signed_in? %>
+                <li class="nav-item mx-3">
+                  商品一覧
+                </li>
+                <li class="nav-item mx-3">
+                  会員一覧
+                </li>
+                <li class="nav-item mx-3">
+                  注文履歴一覧
+                </li>
+                <li class="nav-item mx-3">
+                  ジャンル一覧
+                </li>
+                <li class="nav-item mx-3">
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+                </li>
+              <% else %>
+                <li class="nav-item mx-3">
+                  About
+                </li>
+                <li class="nav-item mx-3">
+                  商品一覧
+                </li>
+                <li class="nav-item mx-3">
+                  <%= link_to "新規登録", new_admin_registration_path %>
+                </li>
+                <li class="nav-item mx-3">
+                  <%= link_to "ログイン", new_admin_session_path %>
+                </li class="nav-item">
+              <% end %>
+            </ul>
+            <form class="form-inline">
+              <input class="form-control ml-auto" type="search" placeholder="キーワードを入力">
+              <span class="form-inline-btn">
+                <button type="button" class="btn btn-info">
+                  <i class="fas fa-search"></i>
+                </button>
+              </span>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <% flash.each do |message_type, message| %>
+        <% if message_type == "notice" %>
+          <p><%= message %></p>
+        <% else %>
+          <p><%= message %></p>
+        <% end %>
+      <% end %>
+      
+      <%= yield %>
+    </main>
+
+    <footer>
+
+    </footer>
   </body>
 </html>
