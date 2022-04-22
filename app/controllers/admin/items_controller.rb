@@ -17,15 +17,28 @@ class Admin::ItemsController < ApplicationController
     @items = Item.page(params[:page])
   end
 
-  def edit
+  def show
+    @item = Item.find(params[:id])
+    # @item_price = "#{@item.price}（#{@item.price * 1.1}）円"
   end
 
-  def show
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      flash[:notice] = "successfully"
+      redirect_to admin_item_path(@item.id)
+    else
+      render :edit
+    end
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:name, :introduction, :price, :is_active, :genre_id)
+    params.require(:item).permit(:name, :introduction, :price, :is_active, :genre_id, :item_image)
   end
 end
