@@ -1,0 +1,40 @@
+<div class="container p-5">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+
+      <h2 class="mb-4 px-4 bg-light text-center text-nowrap d-inline-block">注文履歴一覧</h2>
+
+      <table class="table table-hover table-inverse">
+        <thead class="thead-light">
+          <tr>
+            <th colspan="3">購入日時</th>
+            <th colspan="3">購入者</th>
+            <th colspan="3">注文個数</th>
+            <th colspan="3">注文ステータス</th>
+          </tr>
+        </thead>
+        <% @orders.each do |order| %>
+          <tbody>
+            <tr>
+              <td colspan="3">
+                <%= order.created_at %>
+              </td>
+              <td colspan="3">
+                <%= order.customer.full_name %>
+              </td>
+              <td colspan="3">
+                <%= order.count %>
+              </td>
+              <td colspan="3">
+                <%= order.status %>
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+
+      <%= paginate @orders %>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="container p-5">
+
+  <% if @customer.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= pluralize(@customer.errors.count, "error") %> prohibited this obj from being saved:</h3>
+      <ul>
+        <% @customer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h2 class="mb-4 px-4 bg-light text-center text-nowrap d-inline-block">
+        <%= "#{@customer.last_name}#{@customer.first_name}さんの会員情報編集" %>
+      </h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10">
+      <%= form_with model: @customer, url: admin_customer_path, method: :patch do |f| %>
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <td colspan="3"><%= f.label :id, "会員ID" %></td>
+              <td colspan="5"><%= customer.id %></td>
+            </tr>
+            <tr class="form-group">
+              <td colspan="3"><%= f.label {:last_name + :first_name}, "氏名" %></td>
+              <td colspan="5"><%= f.text_field :last_name %></td>
+              <td colspan="5"><%= f.text_field :first_name %>
+              </td>
+            </tr>
+            <tr class="form-group">
+              <td colspan="3"><%= f.label {:last_name_kana + :first_name_kana}, "フリガナ" %></td>
+              <td colspan="5"><%= f.text_field :last_name_kana %></td>
+              <td colspan="5"><%= f.text_field :first_name_kana %></td>
+            </tr>
+            <tr class="form-group">
+              <td colspan="3"><%= f.label :postal_code, "郵便番号" %></td>
+              <td colspan="5"><%= f.text_field :postal_code %></td>
+            </tr>
+            <tr class="form-group">
+              <td colspan="3"><%= f.label :address, "住所" %></td>
+              <td colspan="12"><%= f.text_field :address %></td>
+            </tr>
+            <tr class="form-group">
+              <td colspan="3"><%= f.label :telephone_number, "電話番号" %></td>
+              <td colspan="5"><%= f.text_field :telephone_number %></td>
+            </tr>
+            <tr class="form-group">
+              <td colspan="3"><%= f.label :email, "メールアドレス" %></td>
+              <td colspan="5"><%= f.email_field :email %></td>
+            </tr>
+            <tr class="form-group">
+              <td colspan="3"><%= f.label :is_active, "会員ステータス" %></td>
+              <td colspan="5">
+                <%= f.radio_button :is_active, "true" %>
+                <%= f.label :is_active, "有効" %>
+                <%= f.radio_button :is_active, "false" %>
+                <%= f.label :is_active, "退会" %>
+              </td>
+            </tr>
+            <tr class="form-group text-center">
+              <td>
+                <%= f.submit "変更を保存", class: "btn btn-success" %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>
