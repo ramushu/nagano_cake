@@ -15,7 +15,7 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-          <%= link_to admin_root_path, class: "navbar-brand border p-4" do %>
+          <%= link_to root_path, class: "navbar-brand border p-4" do %>
             <i class="fas fa-birthday-cake"></i>
           <% end %>
 
@@ -37,9 +37,25 @@
                 <li class="nav-item mx-3">
                   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
                 </li>
+              <% elsif customer_signed_in? %>
+                <li class="nav-item mx-3">
+                  <%= link_to "マイページ",  customer_path %>
+                  <!--customer_my_page_path-->
+                </li>
+                <li class="nav-item mx-3">
+                  <%= link_to "商品一覧", root_path %>
+                  <!--items_path-->
+                </li>
+                <li class="nav-item mx-3">
+                  <%= link_to "カート", root_path %>
+                  <!--cart_item_path-->
+                </li>
+                <li class="nav-item mx-3">
+                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+                </li>
               <% else %>
                 <li class="nav-item mx-3">
-                  About
+                  <%= link_to "About", about_path %>
                 </li>
                 <li class="nav-item mx-3">
                   商品一覧

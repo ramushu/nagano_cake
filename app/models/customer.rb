@@ -16,18 +16,20 @@ class Customer < ApplicationRecord
     validates :postal_code
     validates :address
     validates :telephone_number
+    validates :password
     with_options uniqueness: true do
       validates :telephone_number
     end
   end
-  validates :is_active, inclusion: {in: [true, false]}
+  validates :is_deleted, inclusion: {in: [true, false]}
+  validates :password, length: {minimum: 6}
 
   def full_name
-    self.first_name + " " + self.last_name
+    self.last_name + " " + self.first_name
   end
 
   def full_name_kana
-    self.first_name_kana + " " + self.last_name_kana
+    self.last_name_kana + " " + self.first_name_kana
   end
 
 
