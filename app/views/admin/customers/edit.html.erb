@@ -25,46 +25,45 @@
         <table class="table table-borderless">
           <tbody>
             <tr>
-              <td colspan="3"><%= f.label :id, "会員ID" %></td>
-              <td colspan="5"><%= customer.id %></td>
+              <td>会員ID</td>
+              <td><%= @customer.id %></td>
             </tr>
-            <tr class="form-group">
-              <td colspan="3"><%= f.label {:last_name + :first_name}, "氏名" %></td>
-              <td colspan="5"><%= f.text_field :last_name %></td>
-              <td colspan="5"><%= f.text_field :first_name %>
+            <tr>
+              <td><%= f.label "氏名" %></td>
+              <td><%= f.text_field :last_name %></td>
+              <td><%= f.text_field :first_name %></td>
+            </tr>
+            <tr>
+              <td><%= f.label "フリガナ" %></td>
+              <td><%= f.text_field :last_name_kana %></td>
+              <td><%= f.text_field :first_name_kana %></td>
+            </tr>
+            <tr>
+              <td><%= f.label "郵便番号" %></td>
+              <td><%= f.text_field :postal_code %></td>
+            </tr>
+            <tr>
+              <td><%= f.label "住所" %></td>
+              <td><%= f.text_field :address %></td>
+            </tr>
+            <tr>
+              <td><%= f.label "電話番号" %></td>
+              <td><%= f.text_field :telephone_number %></td>
+            </tr>
+            <tr>
+              <td><%= f.label "メールアドレス" %></td>
+              <td><%= f.email_field :email %></td>
+            </tr>
+            <tr>
+              <td><%= f.label "会員ステータス" %></td>
+              <td>
+                <%= f.radio_button :is_deleted, "false" %>
+                <%= f.label :is_deleted, "有効" %>
+                <%= f.radio_button :is_deleted, "true" %>
+                <%= f.label :is_deleted, "退会" %>
               </td>
             </tr>
-            <tr class="form-group">
-              <td colspan="3"><%= f.label {:last_name_kana + :first_name_kana}, "フリガナ" %></td>
-              <td colspan="5"><%= f.text_field :last_name_kana %></td>
-              <td colspan="5"><%= f.text_field :first_name_kana %></td>
-            </tr>
-            <tr class="form-group">
-              <td colspan="3"><%= f.label :postal_code, "郵便番号" %></td>
-              <td colspan="5"><%= f.text_field :postal_code %></td>
-            </tr>
-            <tr class="form-group">
-              <td colspan="3"><%= f.label :address, "住所" %></td>
-              <td colspan="12"><%= f.text_field :address %></td>
-            </tr>
-            <tr class="form-group">
-              <td colspan="3"><%= f.label :telephone_number, "電話番号" %></td>
-              <td colspan="5"><%= f.text_field :telephone_number %></td>
-            </tr>
-            <tr class="form-group">
-              <td colspan="3"><%= f.label :email, "メールアドレス" %></td>
-              <td colspan="5"><%= f.email_field :email %></td>
-            </tr>
-            <tr class="form-group">
-              <td colspan="3"><%= f.label :is_active, "会員ステータス" %></td>
-              <td colspan="5">
-                <%= f.radio_button :is_active, "true" %>
-                <%= f.label :is_active, "有効" %>
-                <%= f.radio_button :is_active, "false" %>
-                <%= f.label :is_active, "退会" %>
-              </td>
-            </tr>
-            <tr class="form-group text-center">
+            <tr class="text-center">
               <td>
                 <%= f.submit "変更を保存", class: "btn btn-success" %>
               </td>

@@ -10,7 +10,7 @@
           <h2 class="font-weight-bold">登録情報</h2>
         </div>
         <div class="col-md-4">
-          <%= link_to "編集する", edit_customer_path, class: "btn btn-success" %>
+          <%= link_to "編集する", edit_customer_path(@customer), class: "btn btn-success" %>
         </div>
       </div>
 
@@ -25,7 +25,7 @@
             <td><%= @customer.full_name_kana %></td>
           </tr>
           <tr>
-            <td class="table-secondary">電話番号</td>
+            <td class="table-secondary">郵便番号</td>
             <td><%= @customer.postal_code %></td>
           </tr>
           <tr>
@@ -48,7 +48,7 @@
           <h2 class="font-weight-bold">配送先</h2>
         </div>
         <div class="col-md-4">
-          <%= link_to "一覧を見る", edit_customer_path, class: "btn btn-primary" %>
+          <%= link_to "一覧を見る", addresses_path, class: "btn btn-primary" %>
         </div>
       </div>
 
