@@ -19,7 +19,7 @@ class Public::AddressesController < ApplicationController
   end
 
   def update
-    @addressx = Address.find(params[:id])
+    @address = Address.find(params[:id])
     if @address.update(address_params)
       flash[:notice] = "successfully"
       redirect_to addresses_path
