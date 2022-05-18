@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-
-
   # devise_for :customers, controllers: {
   #   sessions:      'customers/sessions',
   #   passwords:     'customers/passwords',
@@ -17,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   scope module: 'public' do
+    resources :items, only:[:index, :show]
     resources :addresses, only:[:index, :edit, :create, :update, :destroy]
     resources :homes, only:[:top]
     get "/customers/my_page" => "customers#show", as: "customer"

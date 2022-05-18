@@ -3,8 +3,8 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
-  
+
+
 
   has_many :cart_items, dependent: :destroy
   has_many :orders, dependent: :destroy
@@ -31,6 +31,8 @@ class Customer < ApplicationRecord
 
   validates :is_deleted, inclusion: {in: [true, false]}
 
+  validates :postal_code,
+    length: { minimum: 7, maximum: 7 }
 
   def full_name
     self.last_name + " " + self.first_name
