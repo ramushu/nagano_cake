@@ -25,9 +25,11 @@
       <div class="d-flex flex-row">
         <% @items.each do |item| %>
           <div class="mx-4 w-25">
-            <%= image_tag item.item_image, class: "img-fluid" %><br>
-            <%= item.name %><br>
-            <%= item.price.to_s(:delimited) %>
+            <%= link_to item_path(item) do %>
+              <%= image_tag item.item_image, class: "img-fluid" %><br>
+              <%= item.name %><br>
+              <%= item.price.to_s(:delimited) %>
+            <% end %>
           </div>
         <% end %>
       </div>

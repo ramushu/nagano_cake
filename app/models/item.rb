@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   has_one_attached :item_image
   belongs_to :genre
   has_many :cart_items, dependent: :destroy
-  has_many :order_details, dependent: :destroy
+  has_many :order_details
 
   validates :name, presence: true, uniqueness: true
   validates :introduction, presence: true
@@ -16,6 +16,14 @@ class Item < ApplicationRecord
       item_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     item_image
+  end
+  
+  # def taxin_price
+  #   price*1.1
+  # end
+  
+  def taxin_price
+    price * 1.1.round
   end
 
 end

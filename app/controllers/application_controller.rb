@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_any!, except: [:top, :about]
-  # before_action :authenticate_admin!
+  # before_action :authenticate_customer!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def authenticate_any!
@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_up_path_for(resource)
-    root_path(resource)
+    customer_path
   end
 
 

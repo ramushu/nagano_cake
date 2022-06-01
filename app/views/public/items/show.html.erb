@@ -1,2 +1,65 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class="container p-5">
+  <div class="row">
+    <div class="col-md-3">
+
+      <%= render 'public/genre', genres: @genres %>
+
+    </div>
+
+    <div class="col-md-8">
+
+      <% if @cart_item.errors.any? %>
+        <div id="error_explanation">
+          <h3><%= pluralize(@cart_item.errors.count, "error") %> prohibited this obj from being saved:</h3>
+          <ul>
+            <% @cart_item.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-md-4">
+          <%= image_tag @item.get_image, size: "100x100" %>
+        </div>
+
+        <div class="col-md-8">
+          <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+            <%= f.hidden_field :item_id, :value => @item.id %>
+            <table class="table table-borderless">
+                <tr>
+              <tbody>
+                  <td><%= @item.name %></td>
+                  <!--<td></%= f.text_field :name, value: @item.name, readonly: true, class: "border-0" %></td>-->
+                </tr>
+                <tr>
+                  <td><%= @item.introduction %></td>
+                </tr>
+                <tr>
+                  <td><%= "¥#{@item.taxin_price.to_s(:delimited)}(税込)" %></td>
+                  <!--<td></%= "¥#{@item.price.to_s(:delimited) * 1.1.round}(税込)" %></td>-->
+                </tr>
+                <tr>
+                  <td class="text-nowrap row">
+                    <div>
+                      <%= f.select :amount, [[1,1], [2,2], [3,3]], {include_blank: "個数選択"}, {class: "form-select mr-4 p-2"} %>
+                    </div>
+                    <div>
+                      <%= f.submit "カートに入れる", class: "btn btn-success" %>
+                    </div>
+                    <!--  </%= f.label :amount, "数量" %>-->
+                    <!--  </%= f.select :amount, stock_array_maker(@current_stock) %>-->
+
+                    <!--</%= link_to "カートに入れる", item_path(@item), class: "btn btn-success" %>-->
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

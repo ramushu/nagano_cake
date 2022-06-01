@@ -7,7 +7,12 @@ class Address < ApplicationRecord
     validates :name
   end
 
-  validates :postal_code,
-    length: { minimum: 7, maximum: 7 }
+  validates :postal_code, length: { minimum: 7, maximum: 7 }
+  
+  
+  def full_address
+    "〒" + postal_code + " " + address + " " + name
+  end
+
 
 end

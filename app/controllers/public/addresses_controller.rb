@@ -6,10 +6,12 @@ class Public::AddressesController < ApplicationController
 
   def create
     @address = Address.new(address_params)
+    @address.customer = current_customer
     if @address.save
       flash[:notice] = "successfully"
       redirect_to addresses_path
     else
+      @addresses = Address.all
       render :index
     end
   end
@@ -20,7 +22,8 @@ class Public::AddressesController < ApplicationController
 
   def update
     @address = Address.find(params[:id])
-    if @address.update(address_params)
+    @address.customer = current_customer
+      if @address.update(address_params)
       flash[:notice] = "successfully"
       redirect_to addresses_path
     else
@@ -33,6 +36,10 @@ class Public::AddressesController < ApplicationController
     @address.destroy
     redirect_to addresses_path
   end
+
+  # def full_address
+  #   "〒" + postal_code + " " + address + " " + name
+  # end
 
   private
 
