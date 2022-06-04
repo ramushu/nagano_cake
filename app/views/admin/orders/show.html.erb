@@ -26,7 +26,7 @@
           <tr>
             <td>注文日</td>
             <td>
-              <%= @order.created_at %>
+              <%= @order.created_at.strftime("%Y/%m/%d") %>
             </td>
           </tr>
           <tr>
@@ -93,21 +93,15 @@
         <tbody>
           <tr>
             <th>商品合計</th>
-            <td>
-              <%= @order.total_payment %>
-            </td>
+            <td><%= @total_price %></td>
           </tr>
           <tr>
             <th>送料</th>
-            <td>
-              <%= @order.postage %>
-            </td>
+            <td><%= @order.postage %></td>
           </tr>
           <tr>
             <th>請求金額合計</th>
-            <td>
-              <%= @order.total_payment %>
-            </td>
+            <td><%= @order.total_payment %></td>
           </tr>
         </tbody>
       </table>

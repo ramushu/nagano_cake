@@ -1,4 +1,6 @@
 class Public::ItemsController < ApplicationController
+before_action :authenticate_any!, except: [:index]
+
   def index
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
